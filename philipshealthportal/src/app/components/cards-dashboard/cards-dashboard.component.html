@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+    <span class="brand">Philips Health Portal</span>  
+</mat-toolbar>
+<section>
+    <div class="example-button-row">
+        <button mat-raised-button [routerLink]="'./calculators'" color="basic">Calculators</button>
+        <button mat-raised-button [routerLink]="'./doctors'" color="basic">Doctors</button>
+        <button mat-raised-button [routerLink]="'./appointments'" color="basic">Appointments</button>
+        <button mat-raised-button [routerLink]="'./health-tips'" color="basic">Health Tips</button>
+        <button mat-raised-button [routerLink]="'/home'" color="basic">Logout {{currentuser}}</button>
+    </div>
+</section>
+<mat-divider></mat-divider>
+<router-outlet></router-outlet>

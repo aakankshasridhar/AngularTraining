@@ -1,0 +1,69 @@
+<div>
+    <mat-card>
+        <mat-card-title>Sign-up</mat-card-title>
+    <mat-card-content>
+    <form #formGroupRef="ngForm" (ngSubmit)="onSignUp(formGroupRef.form)">
+    <p>
+            <mat-form-field>
+                <input type="text" name="uname" [(ngModel)]="username" required #uname="ngModel" matInput placeholder="Username">
+            </mat-form-field>
+    </p>
+    <p>
+            <mat-form-field>
+                <input type="text" name="password" [(ngModel)]="password" required minlength="8" #pwd="ngModel"
+                matInput placeholder="Password">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input type="text" name="retypepwd" [(ngModel)]="retypepassword" required minlength="8" #retypepwd="ngModel"
+                matInput placeholder="Re-Type Password">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input type="text" name="emailVal" [(ngModel)]="email" required pattern="[^ @]*@[^ @]*" #emailVal="ngModel" matInput placeholder="Email">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="fill">
+                <mat-label>Gender</mat-label>
+                <mat-select [(ngModel)]="gender" name="genderVal" required #genderVal="ngModel">
+                    <mat-option *ngFor="let genderVal of genders" [value]="gender">{{ genderVal }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>
+                <input type="text" name="ageVal" [(ngModel)]="age" required pattern="[0-9]*" #ageVal="ngModel" matInput placeholder="Age">
+            </mat-form-field>
+        </p>
+        <div *ngIf="uname.errors && (uname.dirty || uname.touched)" class="error">
+            <p *ngIf="uname.errors['required']">Username is required</p>
+        </div>
+        <div *ngIf="emailVal.errors && (emailVal.dirty || emailVal.touched)" class="error">
+            <p *ngIf="emailVal.errors['required']">Email is required</p>
+            <p *ngIf="emailVal.errors['pattern']">Invalid Value entered</p>
+        </div>
+        <div *ngIf="retypepwd.errors && (retypepwd.dirty || retypepwd.touched)" class="error">
+            <p *ngIf="retypepwd.errors['required']">Password is required</p>
+            <p *ngIf="retypepwd.errors['minlength']">Password must be 8 characters long</p>
+        </div>
+        <div *ngIf="pwd.errors && (pwd.dirty || pwd.touched)" class="error">
+            <p *ngIf="pwd.errors['required']">Password is required</p>
+            <p *ngIf="pwd.errors['minlength']">Password must be 8 characters long</p>
+        </div>
+        <div *ngIf="genderVal.errors && (genderVal.dirty || genderVal.touched)" class="error">
+            <p *ngIf="genderVal.errors['required']">Gender is required</p>
+        </div>
+        <div *ngIf="ageVal.errors && (ageVal.dirty || ageVal.touched)" class="error">
+            <p *ngIf="ageVal.errors['required']">Age is required</p>
+        </div>
+        <div class="button">
+            <button type="submit" mat-button>Sign-up</button>
+            <button (click)="clear()" mat-button>Clear</button>
+        </div>
+        </form>
+    </mat-card-content>
+    </mat-card>
+</div>

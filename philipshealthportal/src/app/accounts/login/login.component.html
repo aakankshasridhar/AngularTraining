@@ -1,0 +1,27 @@
+<mat-card>
+    <mat-card-title>Login</mat-card-title>
+<mat-card-content>
+<form #formGroupRef="ngForm" (ngSubmit)="onLogin(formGroupRef.form)">
+   <p>
+    <mat-form-field>
+        <input type="text" name="email" [(ngModel)]="username" required pattern="[^ @]*@[^ @]*" 
+        #email="ngModel" matInput placeholder="Username">
+        <mat-hint *ngIf="email.errors && (email.dirty || email.touched) && email.errors['required']" style="color: red;">Email is required</mat-hint>
+        <mat-hint *ngIf="email.errors && (email.dirty || email.touched) && email.errors['pattern']" style="color: red;">Email is invalid</mat-hint>
+    </mat-form-field>
+   </p>
+   <p>
+    <mat-form-field>
+        <input type="text" name="password" [(ngModel)]="password" required #pwd="ngModel"
+        matInput placeholder="Password" pattern="[^ ].{8,}">
+        <mat-hint *ngIf="pwd.errors && (pwd.dirty || pwd.touched) && pwd.errors['required']" style="color: red;">Password is required</mat-hint>
+        <mat-hint *ngIf="pwd.errors && (pwd.dirty || pwd.touched) && pwd.errors['pattern']" style="color: red;">Password is invalid</mat-hint>
+    </mat-form-field>
+    </p>
+    <div class="button">
+        <button type="submit" mat-button>Login</button>
+        <button (click)="clear()" mat-button>Clear</button>
+    </div>
+    </form>
+</mat-card-content>
+</mat-card>
